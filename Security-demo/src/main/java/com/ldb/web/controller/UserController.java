@@ -27,6 +27,14 @@ public class UserController {
         user.setId(1);
         return user;
     }
+    @PutMapping("/{id:\\d+}")
+    public User update(@Valid @RequestBody User user, BindingResult errors){
+        if(errors.hasErrors()){
+            errors.getAllErrors().stream().forEach(error-> System.out.println(error));
+        }
+        user.setId(1);
+        return user;
+    }
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
@@ -44,6 +52,12 @@ public class UserController {
         User user=new User();
         user.setUsername("tom");
         return user;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Integer id){
+        System.out.println(id);
+
     }
 
 }
