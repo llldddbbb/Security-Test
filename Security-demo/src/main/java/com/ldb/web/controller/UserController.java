@@ -50,11 +50,11 @@ public class UserController {
     @GetMapping("/{id:\\d+}")//正则
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable Integer id){
-        throw new RuntimeException("user not exist");
-//        System.out.println("进入getinfo服务");
-//        User user=new User();
-//        user.setUsername("tom");
-//        return user;
+//        throw new RuntimeException("user not exist");
+        System.out.println("进入getinfo服务");
+        User user=new User();
+        user.setUsername("tom");
+        return user;
     }
 
     @DeleteMapping("/{id}")
