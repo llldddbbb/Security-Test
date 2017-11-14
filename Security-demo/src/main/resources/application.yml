@@ -9,6 +9,8 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  redis:
+    host: 123.207.233.85
 server:
   port: 8060
 security:

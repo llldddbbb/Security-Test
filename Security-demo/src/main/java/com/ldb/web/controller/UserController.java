@@ -2,6 +2,7 @@ package com.ldb.web.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.ldb.dto.User;
+import com.ldb.exception.UserNotExistException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,9 +50,10 @@ public class UserController {
     @GetMapping("/{id:\\d+}")//正则
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable Integer id){
-        User user=new User();
-        user.setUsername("tom");
-        return user;
+        throw new UserNotExistException("user not exist");
+//        User user=new User();
+//        user.setUsername("tom");
+//        return user;
     }
 
     @DeleteMapping("/{id}")
