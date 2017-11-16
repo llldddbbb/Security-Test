@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
  * @date 2017/11/14
  * 缺点：无法拿到原始request，response
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class TimeAspect {
 
     @Around("execution(* com.ldb.web.controller.UserController.*(..))")

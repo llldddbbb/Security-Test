@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
  * 拦截器类
  */
 @Component
-
 public class TimeInterceptor implements HandlerInterceptor{
 
     @Override
