@@ -3,6 +3,8 @@ package com.ldb.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.ldb.dto.User;
 import com.ldb.exception.UserNotExistException;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +41,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
+    @ApiOperation("查询用户")
     public List<User> query(){
         List<User> users=new ArrayList<>();
         users.add(new User());
@@ -49,7 +52,7 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")//正则
     @JsonView(User.UserDetailView.class)
-    public User getInfo(@PathVariable Integer id){
+    public User getInfo(@ApiParam("用户ID") @PathVariable Integer id){
 //        throw new RuntimeException("user not exist");
         System.out.println("进入getinfo服务");
         User user=new User();
