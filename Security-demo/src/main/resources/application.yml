@@ -13,6 +13,6 @@ spring:
     host: 123.207.233.85
 server:
   port: 8060
-security:
-  basic:
-    enabled: false
+#security:
+#  basic:
+#    enabled: false
