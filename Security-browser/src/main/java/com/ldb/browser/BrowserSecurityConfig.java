@@ -1,5 +1,7 @@
 package com.ldb.browser;
 
+import com.ldb.browser.authentication.MyAuthenticationFailureHandler;
+import com.ldb.browser.authentication.MyAuthenticationSuccessHandler;
 import com.ldb.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
+    @Autowired
+    private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
+
     //加密
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -31,6 +39,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.httpBasic()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
+                .successHandler(myAuthenticationSuccessHandler)
+                .failureHandler(myAuthenticationFailureHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require",securityProperties.getBrowser().getLoginPage()).permitAll()
