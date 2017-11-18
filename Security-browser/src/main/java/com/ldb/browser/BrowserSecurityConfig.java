@@ -1,5 +1,7 @@
 package com.ldb.browser;
 
+import com.ldb.core.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private SecurityProperties securityProperties;
+
     //加密
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -24,9 +29,15 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
 //        http.httpBasic()
+                .loginPage("/authentication/require")
+                .loginProcessingUrl("/authentication/form")
                 .and()
                 .authorizeRequests()
+                .antMatchers("/authentication/require",securityProperties.getBrowser().getLoginPage()).permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf().disable()
+        ;
     }
 }

@@ -16,3 +16,7 @@ server:
 #security:
 #  basic:
 #    enabled: false
+com:
+  ldb:
+    browser:
+      loginPage: /demo-signIn.html
