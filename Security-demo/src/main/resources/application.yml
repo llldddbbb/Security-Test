@@ -28,6 +28,6 @@ com:
   ldb:
     code:
       image:
-        length: 6
+        length: 4
         width: 100
-        url: /user,/user/*
+        url: /user
