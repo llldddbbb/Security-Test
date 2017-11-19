@@ -1,6 +1,7 @@
 package com.ldb.browser.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ldb.browser.support.SimpleResponse;
 import com.ldb.core.properties.LoginType;
 import com.ldb.core.properties.SecurityProperties;
 import org.slf4j.Logger;
@@ -37,7 +38,7 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())){
             httpServletResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             httpServletResponse.setContentType("application/json;charset=UTF-8");
-            httpServletResponse.getWriter().write(objectMapper.writeValueAsString(e));
+            httpServletResponse.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(e.getMessage())));
         }else{
             super.onAuthenticationFailure(httpServletRequest,httpServletResponse,e);
         }

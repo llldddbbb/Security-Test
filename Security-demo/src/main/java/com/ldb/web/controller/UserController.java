@@ -5,6 +5,9 @@ import com.ldb.dto.User;
 import com.ldb.exception.UserNotExistException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +22,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+
+    @GetMapping("/me")
+    public Object authentication(@AuthenticationPrincipal UserDetails user){
+        return user;
+    }
 
     @PostMapping
     public User create(@Valid @RequestBody User user, BindingResult errors){

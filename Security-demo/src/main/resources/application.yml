@@ -20,7 +20,7 @@ server:
 #  ldb:
 #    browser:
 #      loginPage: /demo-signIn.html
-com:
-  ldb:
-    browser:
-     loginType: REDIRECT
+#com:
+#  ldb:
+#    browser:
+#     loginType: REDIRECT
